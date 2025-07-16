@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       {
         url: "/images/k-time-og",
         width: 1200,
-        height: 630,
+        height: 600,
         alt: "K-Time 대표 미리보기 이미지",
       },
     ],
