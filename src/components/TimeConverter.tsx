@@ -60,16 +60,9 @@ export default function TimeConverter({
     const utcEnd = fromZonedTime(dtEnd, baseTz);
     // 반드시 UTC로 포맷!
     const fmt = (d: Date) => formatInTimeZone(d, "UTC", "yyyyMMdd'T'HHmmss'Z'");
-    const details = `${t("title")} (${
-      baseZone === "korea"
-        ? t("korea")
-        : canadaCities.find((c) => c.tz === canadaTz)?.name
-    } ${t("inputTime")})`;
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-      t("title")
-    )}&dates=${fmt(utcStart)}/${fmt(utcEnd)}&details=${encodeURIComponent(
-      details
-    )}`;
+      "회의"
+    )}&dates=${fmt(utcStart)}/${fmt(utcEnd)}`;
   };
 
   const oppoZone = getOpposite(baseZone);
