@@ -23,8 +23,8 @@ export default function ChangeLocale() {
         className="appearance-none px-4 py-2 rounded-lg bg-white text-black border-none focus:ring-2 focus:ring-blue-200 focus:outline-none transition text-sm font-medium min-w-[110px]"
         style={{ boxShadow: "none" }}
       >
-        <option value="ko">🇰🇷 한국어</option>
-        <option value="en">🇨🇦 English</option>
+        <option value="ko">한국어</option>
+        <option value="en">English</option>
       </select>
       <svg
         className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
