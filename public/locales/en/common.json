@@ -1,0 +1,25 @@
+{
+  "title": "Korea-Canada Time Converter",
+  "inputTime": "Input Time",
+  "time": "Time",
+  "selectCity": "Select City",
+  "convert": "Convert",
+  "addToGoogleCalendar": "Add to Google Calendar",
+  "korea": "Korea",
+  "canada": "Canada",
+  "selectLanguage": "Select Language",
+  "startTime": "Start Time",
+  "endTime": "End Time",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "calendarSuccess": "Successfully added to Google Calendar.",
+  "calendarError": "Failed to add to Google Calendar.",
+  "timezoneNotice": "The entered time is automatically converted to the other timezone.",
+  "cityNotice": "Daylight saving is automatically applied by city.",
+  "seo": {
+    "title": "Korea-Canada Time Converter",
+    "description": "Convert time between Korea and major Canadian cities (Vancouver, Toronto, etc.), with automatic daylight saving, flag backgrounds, and multilingual support!",
+    "keywords": "time converter, Korea, Canada, Vancouver, Toronto, daylight saving, multilingual, flag background",
+    "ogImageAlt": "Preview image for Korea-Canada Time Converter"
+  }
+}

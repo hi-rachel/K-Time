@@ -1,0 +1,25 @@
+{
+  "title": "한국-캐나다 시간 변환기",
+  "inputTime": "시간 입력",
+  "time": "시간",
+  "selectCity": "도시 선택",
+  "convert": "변환",
+  "addToGoogleCalendar": "구글 캘린더에 추가",
+  "korea": "한국",
+  "canada": "캐나다",
+  "selectLanguage": "언어 선택",
+  "startTime": "시작 시간",
+  "endTime": "종료 시간",
+  "copy": "복사",
+  "copied": "복사됨!",
+  "calendarSuccess": "구글 캘린더에 성공적으로 추가되었습니다.",
+  "calendarError": "구글 캘린더 추가에 실패했습니다.",
+  "timezoneNotice": "입력한 시간은 자동으로 상대 시간대로 변환됩니다.",
+  "cityNotice": "도시별로 서머타임이 자동 적용됩니다.",
+  "seo": {
+    "title": "한국-캐나다 시간 변환기",
+    "description": "한국과 캐나다 주요 도시(밴쿠버, 토론토 등) 시간 변환, 서머타임 자동 반영, 국기 배경, 다국어 지원!",
+    "keywords": "시간 변환, 한국, 캐나다, 밴쿠버, 토론토, 서머타임, 다국어, 국기 배경",
+    "ogImageAlt": "한국-캐나다 시간 변환기 미리보기 이미지"
+  }
+}
