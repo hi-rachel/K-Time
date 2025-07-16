@@ -6,8 +6,8 @@ import { useParams } from "next/navigation";
 import ChangeLocale from "../../components/ChangeLocale";
 
 const flagImages = {
-  korea: "/image/flag/south-korea.webp",
-  toronto: "/image/flag/canada.webp",
+  korea: "/images/flag/south-korea.webp",
+  toronto: "/images/flag/canada.webp",
 };
 
 export default function LocalePage() {
