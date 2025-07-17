@@ -6,6 +6,7 @@ type Flower = {
   left: number;
   size: number;
   bottom: number;
+  hit?: boolean;
 };
 
 function getResponsiveConfig(windowWidth: number) {
@@ -56,6 +57,7 @@ function getResponsiveConfig(windowWidth: number) {
 export default function FlowerBed() {
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
   const [flowers, setFlowers] = useState<Flower[]>([]);
+  const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const flowerId = useRef(0);
 
   useEffect(() => {
@@ -65,16 +67,23 @@ export default function FlowerBed() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  // flower 위치는 고정, size만 반응형으로 조절
+  // 커서 위치 추적
+  useEffect(() => {
+    if (windowWidth === null || windowWidth < 640) return;
+    const handleMove = (e: MouseEvent) =>
+      setCursor({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", handleMove);
+    return () => window.removeEventListener("mousemove", handleMove);
+  }, [windowWidth]);
+
+  // 반응형 꽃 생성/크기 조절
   useEffect(() => {
     if (windowWidth === null || windowWidth < 640) return;
     const { flowerCount, radius, minSize, maxSize, baseBottom } =
       getResponsiveConfig(windowWidth);
     const centerX = 50;
-    // t값을 -0.85~0.85로 조정해 양 끝 여백 확보
     setFlowers((prev) => {
       if (prev.length === flowerCount) {
-        // 위치 고정, size만 업데이트
         return prev.map((f, i) => {
           const size =
             i === 0 || i === flowerCount - 1
@@ -83,9 +92,7 @@ export default function FlowerBed() {
           return { ...f, size };
         });
       }
-      // 최초 생성: 위치 랜덤, 양 끝은 작게
       return Array.from({ length: flowerCount }).map((_, i) => {
-        // -0.85~0.85로 패딩
         const t = (i / (flowerCount - 1)) * 1.7 - 0.85; // -0.85~0.85
         const y = Math.sqrt(1 - t * t);
         const left = centerX + t * radius;
@@ -93,8 +100,6 @@ export default function FlowerBed() {
           i === 0 || i === flowerCount - 1
             ? minSize
             : Math.random() * (maxSize - minSize) + minSize;
-        // 꽃 사이 최소 간격 보장(겹치지 않게): 크기와 반지름을 조합해 bottom을 조정
-        // (y가 1에 가까울수록 위로 올라가게)
         const bottom =
           baseBottom +
           (1 - y) *
@@ -105,10 +110,38 @@ export default function FlowerBed() {
               : windowWidth < 1600
               ? 60
               : 80);
-        return { id: flowerId.current++, left, size, bottom };
+        return { id: flowerId.current++, left, size, bottom, hit: false };
       });
     });
   }, [windowWidth]);
+
+  // 커서-꽃 충돌 판정 및 hit 애니메이션
+  useEffect(() => {
+    if (windowWidth === null || windowWidth < 640) return;
+    if (flowers.length === 0) return;
+    const interval = setInterval(() => {
+      setFlowers((prev) =>
+        prev.map((f) => {
+          const x = (f.left / 100) * window.innerWidth;
+          const y = window.innerHeight - f.bottom - f.size / 2;
+          const dx = cursor.x - (x + f.size / 2);
+          const dy = cursor.y - (y + f.size / 2);
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const hit = dist < f.size * 0.7;
+          if (hit && !f.hit) {
+            setTimeout(() => {
+              setFlowers((prev2) =>
+                prev2.map((ff) => (ff.id === f.id ? { ...ff, hit: false } : ff))
+              );
+            }, 700);
+            return { ...f, hit: true };
+          }
+          return f;
+        })
+      );
+    }, 30);
+    return () => clearInterval(interval);
+  }, [cursor, flowers, windowWidth]);
 
   if (windowWidth !== null && windowWidth < 640) return null;
 
@@ -142,7 +175,12 @@ export default function FlowerBed() {
             userSelect: "none",
             opacity: 0.92,
             filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.08))",
-            transition: "width 0.5s, height 0.5s",
+            transition: f.hit
+              ? "transform 0.45s cubic-bezier(.22,1.2,.36,1), width 0.5s, height 0.5s"
+              : "width 0.5s, height 0.5s",
+            transform: f.hit
+              ? "scale(1.3) translateY(-30px) rotate(-20deg)"
+              : undefined,
           }}
         />
       ))}
