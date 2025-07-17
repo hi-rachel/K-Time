@@ -1,17 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import TimeConverter from "./TimeConverter";
+import TimeConverter, { KOREA, CANADA } from "./TimeConverter";
 import ChangeLocale from "./ChangeLocale";
 
 const flagImages = {
-  korea: "/image/flag/south-korea.webp",
-  toronto: "/image/flag/canada.webp",
+  [KOREA]: "/images/flag/south-korea.webp",
+  [CANADA]: "/images/flag/canada.webp",
 };
 
-export default function TimePageClient({ locale }: { locale: string }) {
-  const [baseZone, setBaseZone] = useState<"korea" | "toronto">("korea");
-  const flagBg = flagImages[baseZone];
+type TimePageClientProps = { locale: string };
+
+export default function TimePageClient({ locale }: TimePageClientProps) {
+  const [baseCountry, setBaseCountry] = useState<typeof KOREA | typeof CANADA>(
+    KOREA
+  );
+  const flagBg = flagImages[baseCountry];
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -33,8 +37,8 @@ export default function TimePageClient({ locale }: { locale: string }) {
       </div>
       <div className="relative z-10 w-full max-w-md">
         <TimeConverter
-          baseZone={baseZone}
-          setBaseZone={setBaseZone}
+          baseCountry={baseCountry}
+          setBaseCountry={setBaseCountry}
           locale={locale}
         />
       </div>
