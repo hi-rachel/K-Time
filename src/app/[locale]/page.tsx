@@ -1,18 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
-import TimeConverter from "../../components/TimeConverter";
+import TimeConverter, { KOREA, CANADA } from "@/components/TimeConverter";
 import { useParams } from "next/navigation";
 import ChangeLocale from "../../components/ChangeLocale";
 
 const flagImages = {
-  korea: "/images/flag/south-korea.webp",
-  toronto: "/images/flag/canada.webp",
+  [KOREA]: "/images/flag/south-korea.webp",
+  [CANADA]: "/images/flag/canada.webp",
 };
 
 export default function LocalePage() {
-  const [baseZone, setBaseZone] = useState<"korea" | "toronto">("korea");
-  const flagBg = flagImages[baseZone];
+  const [baseCountry, setBaseCountry] = useState<typeof KOREA | typeof CANADA>(
+    KOREA
+  );
+  const flagBg = flagImages[baseCountry];
   const params = useParams();
   const locale = params.locale as string;
 
@@ -36,8 +38,8 @@ export default function LocalePage() {
       </div>
       <div className="relative z-10 w-full max-w-md">
         <TimeConverter
-          baseZone={baseZone}
-          setBaseZone={setBaseZone}
+          baseCountry={baseCountry}
+          setBaseCountry={setBaseCountry}
           locale={locale}
         />
       </div>
