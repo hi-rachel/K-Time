@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "K-Time | 한국-캐나다 시차 쉽게 확인하세요",
     description:
       "한국과 캐나다(밴쿠버, 토론토 등) 간의 시간 차이를 자동 계산! 서머타임도 반영되는 스마트 시간 변환기",
-    url: "https://k-time.vercel.app/ko/",
+    url: "https://k-time.vercel.app/",
     siteName: "K-Time",
     images: [
       {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     images: ["/images/k-time-og.png"],
   },
   alternates: {
-    canonical: "https://k-time.vercel.app/ko/",
+    canonical: "https://k-time.vercel.app/",
     languages: {
       ko: "https://k-time.vercel.app/ko",
       en: "https://k-time.vercel.app/en",
