@@ -1,6 +1,6 @@
 {
-  "title": "Korea-Canada Time Converter",
-  "inputTime": "Input Time",
+  "title": "Korea–Canada Time Zone Converter",
+  "inputTime": "Local Time",
   "time": "Time",
   "selectCity": "Select City",
   "convert": "Convert",
@@ -17,9 +17,9 @@
   "timezoneNotice": "The entered time is automatically converted to the other timezone.",
   "cityNotice": "Daylight saving is automatically applied by city.",
   "seo": {
-    "title": "Korea-Canada Time Converter",
-    "description": "Convert time between Korea and major Canadian cities (Vancouver, Toronto, etc.), with automatic daylight saving, flag backgrounds, and multilingual support!",
-    "keywords": "time converter, Korea, Canada, Vancouver, Toronto, daylight saving, multilingual, flag background",
+    "title": "Korea–Canada Time Zone Converter",
+    "description": "Convert time between Korea and major Canadian cities (Vancouver, Toronto, etc.), with automatic daylight saving, and multilingual support!",
+    "keywords": "time converter, Korea, Canada, Vancouver, Toronto, daylight saving, multilingual",
     "ogImageAlt": "Preview image for Korea-Canada Time Converter"
   }
 }
